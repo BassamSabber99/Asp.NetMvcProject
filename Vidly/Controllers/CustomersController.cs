@@ -1,35 +1,103 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Vidly.Models;
+using Vidly.ViewModels;
 
 namespace Vidly.Controllers
 {
     public class CustomersController : Controller
     {
-        public List<Customer> GetCustomers()
+        private ApplicationDbContext _context;
+
+        public CustomersController()
         {
-            return  new List<Customer>
-            {
-                new Customer{Name = "John Smith" , id = 1},
-                new Customer{Name = "Mary Williams" , id = 2}
-            };
+            _context = new ApplicationDbContext();
         }
+
+        protected override void Dispose(bool disposing)
+        {
+            _context.Dispose();
+        }
+
+        public ActionResult New()
+        {
+            var memberships = _context.MembershipTypes.ToList();
+            var viewmodel = new CustomerFormViewModel
+            {
+                Customer = new Customer(),
+                MembershipTypes = memberships
+            };
+            return View("CustomerForm",viewmodel); 
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Save(Customer customerDto)
+        {
+           
+            
+            if (!ModelState.IsValid)
+            {
+                var viewmodel = new CustomerFormViewModel(customerDto)
+                {
+                    MembershipTypes = _context.MembershipTypes.ToList()
+                };
+                return View("CustomerForm" ,viewmodel);
+            }
+            if(customerDto.id == 0)
+                _context.Customers.Add(customerDto);
+            else
+            {
+                var customerInDb = _context.Customers.Single(c => c.id == customerDto.id);
+
+
+                customerInDb.Name = customerDto.Name;
+                customerInDb.BirthDate = customerDto.BirthDate;
+                customerInDb.MembershipTypeId = customerDto.MembershipTypeId;
+                customerInDb.IsSubscribedToNewsletter = customerDto.IsSubscribedToNewsletter;
+
+
+            }
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Customers");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var customer = _context.Customers.SingleOrDefault(c => c.id == id);
+
+            if (customer == null)
+                return HttpNotFound();
+
+            var viewModel = new CustomerFormViewModel(customer)
+            {
+                MembershipTypes = _context.MembershipTypes.ToList()
+            };
+            return View("CustomerForm",viewModel);
+        }
+
+
+        
         // GET: Customers
         public ActionResult Index()
         {
-            var customer = GetCustomers();
-            return View(customer);
+          
+            return View();
         }
 
         public ActionResult Details(int id)
         {
-            var customer = GetCustomers().SingleOrDefault(i => i.id == id);
+            var customer = _context.Customers.Include(c=>c.MembershipType).SingleOrDefault(i => i.id == id);
             if (customer == null)
                 return HttpNotFound();
             return View(customer);
         }
+
+        
     }
 }
