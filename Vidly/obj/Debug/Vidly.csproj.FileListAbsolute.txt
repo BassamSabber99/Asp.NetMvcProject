@@ -102,3 +102,17 @@ C:\Users\20114\Desktop\Vidly\Vidly\bin\System.Diagnostics.DiagnosticSource.xml
 C:\Users\20114\Desktop\Vidly\Vidly\bin\System.Interactive.Async.xml
 C:\Users\20114\Desktop\Vidly\Vidly\bin\System.Text.Encodings.Web.xml
 C:\Users\20114\Desktop\Vidly\Vidly\obj\Debug\Vidly.Migrations.addphonetousers.resources
+C:\Users\20114\Desktop\Vidly\Vidly\bin\Newtonsoft.Json.dll
+C:\Users\20114\Desktop\Vidly\Vidly\bin\SendGrid.dll
+C:\Users\20114\Desktop\Vidly\Vidly\bin\SendGrid.pdb
+C:\Users\20114\Desktop\Vidly\Vidly\bin\SendGrid.xml
+C:\Users\20114\Desktop\Vidly\Vidly\bin\Glimpse.AspNet.dll
+C:\Users\20114\Desktop\Vidly\Vidly\bin\Glimpse.Core.dll
+C:\Users\20114\Desktop\Vidly\Vidly\bin\Glimpse.Ado.dll
+C:\Users\20114\Desktop\Vidly\Vidly\bin\Glimpse.EF6.dll
+C:\Users\20114\Desktop\Vidly\Vidly\bin\Glimpse.Mvc4.dll
+C:\Users\20114\Desktop\Vidly\Vidly\obj\Debug\Vidly.Migrations.createtableRentals.resources
+C:\Users\20114\Desktop\Vidly\Vidly\obj\Debug\Vidly.Migrations.addnumberavailbletomovie.resources
+C:\Users\20114\Desktop\Vidly\Vidly\bin\Toast.exe
+C:\Users\20114\Desktop\Vidly\Vidly\bin\Toaster.dll
+C:\Users\20114\Desktop\Vidly\Vidly\bin\ToolBelt.dll

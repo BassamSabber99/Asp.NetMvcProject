@@ -6,6 +6,16 @@
 
 <h2>Customers</h2>
 
+
+@*
+    <ul>
+        @foreach (var customer in Model)
+        {
+            <li>@customer.Name - @customer.MembershipType.name</li>
+        }
+    </ul>
+*@
+
 @Html.ActionLink("New Customer +", "New", "Customer", new { @class = "btn btn-primary" })
 
 
